@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="date_field">
+    <label for="date">FOR DATE</label>
+    <input type="date" name="" id="" />
+    <button>FETCH</button>
+  </div>
+  <hr />
+  <div class="table">
+    @for (transactions of transactionsArr; track $index) {
+    <div class="date">
+      <div>DATE: {{ transactions.date }}</div>
+      <div>DR: {{ transactions.dr }}</div>
+      <div>CR: {{ transactions.cr }}</div>
+    </div>
+    @for (item of transactions.items; track $index) {
+    <div class="record">
+      <div>{{ item.itemName }}</div>
+      <div>{{ item.dr }}</div>
+      <div>{{ item.cr }}</div>
+    </div>
+    } }
+  </div>
+</div>

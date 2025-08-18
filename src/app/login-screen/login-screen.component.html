@@ -1,0 +1,15 @@
+<form (submit)="onSubmit($event, mobileInput.value, otpInput.value)">
+    <div class="row">
+        <label for="mobile">Mobile:</label>
+        <input #mobileInput type="text" id="mobile" name="mobile" required>
+    </div>
+
+    <div class="row">
+        <label for="otp">OTP:</label>
+        <input #otpInput type="text" id="otp" name="otp" required>
+    </div>
+
+    <div class="row">
+        <button type="submit">Login</button>
+    </div>
+</form>

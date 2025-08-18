@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+:host {
+  font-family: "Inter", sans-serif;
+}
+
+.date_field {
+  text-align: left;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 0.6rem;
+}
+
+.date_field > * {
+  margin-right: 8px;
+}
+
+.date {
+  border: 2px solid black;
+
+  font-size: 0.9rem;
+  margin: 5px 0;
+}
+
+.date > * {
+  display: inline-block;
+  width: 27%;
+  border-left: 1px solid black;
+  text-align: center;
+  padding: 4px 0;
+}
+
+.date > :first-child {
+  width: 40%;
+  border: none;
+}
+
+.record {
+  border-bottom: 1px solid gray;
+  padding: 5px 8px;
+}
+
+.record > * {
+  display: inline-block;
+  width: 25%;
+  margin-right: 10px;
+  font-size: 0.9rem;
+}
+
+.record > :first-child {
+  width: 40%;
+  border: none;
+}
+
+
+.table {
+  padding: 0.6rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+}
+
+button {
+  background-color: #007bff; /* Primary blue */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
