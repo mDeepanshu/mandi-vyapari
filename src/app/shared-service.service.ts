@@ -33,7 +33,7 @@ export class SharedServiceService {
           console.log('Subscription options:', subscriptionOptions);
 
           this.http
-            .post('https://3n9e7qwlfb.execute-api.ap-southeast-1.amazonaws.com/subscribe', subscriptionOptions)
+            .post('https://5txvte0v46.execute-api.ap-southeast-1.amazonaws.com/dev/%7Bproxy+%7D/subscribe', subscriptionOptions)
             .subscribe(() => {
               console.log('Successfully subscribed:', subscriptionOptions);
             });
