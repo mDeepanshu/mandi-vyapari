@@ -17,8 +17,8 @@ export class SharedServiceService {
     return this.http.get(url); // returns Observable
   }
 
-    getHelloLambda() {
-    const url = `https://5txvte0v46.execute-api.ap-southeast-1.amazonaws.com/dev/%7Bproxy+%7D/`;
+  getHelloLambda() {
+    const url = `https://5txvte0v46.execute-api.ap-southeast-1.amazonaws.com/dev/`;
     return this.http.get(url); // returns Observable
   }
 
@@ -38,7 +38,10 @@ export class SharedServiceService {
           console.log('Subscription options:', subscriptionOptions);
 
           this.http
-            .post('https://5txvte0v46.execute-api.ap-southeast-1.amazonaws.com/dev/%7Bproxy+%7D/subscribe', subscriptionOptions)
+            .post(
+              'https://5txvte0v46.execute-api.ap-southeast-1.amazonaws.com/dev/subscribe',
+              subscriptionOptions
+            )
             .subscribe(() => {
               console.log('Successfully subscribed:', subscriptionOptions);
             });
