@@ -51,4 +51,10 @@ export class TransactionScreenComponent implements OnInit {
         this.transactionsArr = groupedData;
       });
   }
+
+  getTransactionData() {
+    this.sharedService.getHelloLambda().subscribe((data: any) => {
+      console.log('Hello Lambda response:', data);
+    });
+  }
 }

@@ -17,6 +17,11 @@ export class SharedServiceService {
     return this.http.get(url); // returns Observable
   }
 
+    getHelloLambda() {
+    const url = `https://5txvte0v46.execute-api.ap-southeast-1.amazonaws.com/dev/%7Bproxy+%7D/`;
+    return this.http.get(url); // returns Observable
+  }
+
   subscribeToNotifications(vyapariId: string = this.mobileNumber) {
     if (this.swPush.isEnabled) {
       this.swPush
