@@ -18,7 +18,7 @@ export class SharedServiceService {
   }
 
   getHelloLambda() {
-    const url = `https://5txvte0v46.execute-api.ap-southeast-1.amazonaws.com/dev/`;
+    const url = `https://5txvte0v46.execute-api.ap-southeast-1.amazonaws.com/dev/hello`;
     return this.http.get(url); // returns Observable
   }
 
