@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="close-box">
+    <mat-icon fontIcon="close" (click)="toggleDrawerFn()" class="closebtn"></mat-icon>
+  </div>
+  <hr />
+  <div class="content">
+    <ul>
+      <li>
+        <button (click)="subscribeToNotifications()">
+          Allow Alerts
+          <mat-icon fontIcon="notifications_active" (click)="toggleDrawerFn()"></mat-icon>
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

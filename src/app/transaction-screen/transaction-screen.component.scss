@@ -5,10 +5,16 @@
 }
 
 .date_field {
+  display: flex;
+  align-items: center;
   text-align: left;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
   padding: 0.6rem;
+}
+
+input{
+  height: 29px;
+  width: 100px;
 }
 
 .date_field > * {
@@ -67,5 +73,9 @@ button {
   border-radius: 6px;
   font-size: 14px;
   font-weight: bold;
+  cursor: pointer;
+}
+
+.menuIcon {
   cursor: pointer;
 }

@@ -1,6 +1,15 @@
 @if (isLoggedIn) {
-  <app-transaction-screen></app-transaction-screen>
+<mat-drawer-container
+  class="example-container"
+  [hasBackdrop]="hasBackdrop"
+>
+  <mat-drawer #drawer [mode]="mode" style="width: 80%">
+    <app-sidebar (toggleDrawer)="toggleDrawer()"></app-sidebar>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-transaction-screen (toggleDrawer)="toggleDrawer()"></app-transaction-screen>
+  </mat-drawer-content>
+</mat-drawer-container>
 } @else {
-  <app-login-screen (valueChange)="isLoggedIn = $event"></app-login-screen>
+<app-login-screen (valueChange)="isLoggedIn = $event"></app-login-screen>
 }
-

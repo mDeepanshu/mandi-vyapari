@@ -1,7 +1,8 @@
 <div class="container">
   <div class="date_field">
-    <label for="date">FOR DATE</label>
-    <input type="date" name="" id="" />
+    <mat-icon fontIcon="menu" (click)="toggleDrawerFn()" class="menuIcon"></mat-icon>
+    <input type="date" name="" id="" [value]="start"/>
+    <input type="date" name="" id="" [value]="end"/>
     <button (click)="getTransactionData()">FETCH</button>
   </div>
   <hr />
