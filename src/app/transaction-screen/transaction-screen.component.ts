@@ -25,7 +25,6 @@ export class TransactionScreenComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.sharedService.subscribeToNotifications("1955724a565");
     this.swPush.messages.subscribe((message) => {
       console.log("Push message received: ", message);
       
@@ -38,13 +37,9 @@ export class TransactionScreenComponent implements OnInit {
   }
 
   getTransactionData() {
-    // this.sharedService.getHelloLambda().subscribe((data: any) => {
-    //   console.log('Hello Lambda response:', data);
-    // });
-    let vyapariId = '1955724a565'; 
-    // const vyapariId = localStorage.getItem('vyapariId'); // Example vyapariId
-    if (vyapariId) {
-      this.sharedService.getMyLedger(vyapariId, this.start, this.end).subscribe((data: any) => {
+    const partyId = localStorage.getItem('partyId');
+    if (partyId) {
+      this.sharedService.getMyLedger(partyId, this.start, this.end).subscribe((data: any) => {
         let transactionsData: any[] = data.responseBody.transactions;
         let groupedData: GroupedData[] = [];
         // let newDateIndex: number | null = null;
@@ -76,7 +71,7 @@ export class TransactionScreenComponent implements OnInit {
         this.transactionsArr = groupedData;
 
       });
-    }else console.log("vyapariId not found in localStorage");
+    }else console.log("partyId not found in localStorage");
   }
 
   toggleDrawerFn() {

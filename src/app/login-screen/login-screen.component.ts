@@ -21,9 +21,9 @@ export class LoginScreenComponent {
     event.preventDefault();
     this.valueChange.emit(true);
     this.loginService.signUp(this.mobileNumber,this.otp).subscribe((response:any) => {
-      localStorage.setItem('permanentAccessCode', response.responseBody.code);
-      localStorage.setItem('vyapariId', response.responseBody.vyapariId);
-      this.sharedService.subscribeToNotifications(response.responseBody.vyapariId);
+      localStorage.setItem('partyCode', response.responseBody.partyCode);
+      localStorage.setItem('partyId', response.responseBody.partyId);
+      this.sharedService.subscribeToNotifications(response.responseBody.partyId);
     });
   }
 

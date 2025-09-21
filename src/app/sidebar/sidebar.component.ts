@@ -36,9 +36,9 @@ export class SidebarComponent implements OnInit {
   subscribeToNotifications() {
     console.log("Subscribing to notifications...");
     
-    // const vyapariId = localStorage.getItem('vyapariId');
-    // if (vyapariId) {
-    //   this.sharedService.subscribeToNotifications(vyapariId);
+    // const partyId = localStorage.getItem('partyId');
+    // if (partyId) {
+    //   this.sharedService.subscribeToNotifications(partyId);
     // }else{
       // console.warn("Vyapari ID not found in local storage. Cannot subscribe to notifications.");
     // }
@@ -48,8 +48,8 @@ export class SidebarComponent implements OnInit {
 
   
   logOut(){
-    localStorage.removeItem('permanentAccessCode');
-    localStorage.removeItem('vyapariId');
+    localStorage.removeItem('partyCode');
+    localStorage.removeItem('partyId');
     window.location.reload();
   }
 

@@ -1,28 +1,28 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SwPush } from '@angular/service-worker';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SharedServiceService {
-  mobileNumber: string = '1955724a565';
   private readonly publicKey: string =
     'BFcAYkpjplEVe5f4dBBRpNZTlk-Fp-mdtqdex0DZEGiEIFtNy8GaM1Fge4UmIlf0n2yvyKrr9mUM-K88Wih5Djs';
 
-  constructor(private http: HttpClient, private swPush: SwPush) {}
+  constructor(private http: HttpClient, private swPush: SwPush) { }
 
-  getMyLedger(vyapariId: string, startDate: string, endDate: string) {
-    const url = `http://localhost:8080/mandi/vyapari/ledger?vyapariId=${vyapariId}&startDate=${startDate}&endDate=${endDate}`;
-    return this.http.get(url); // returns Observable
+  getMyLedger(partyId: string, startDate: string, endDate: string) {
+    const url = `http://localhost:8080/mandi/vyapari/ledger?vyapariId=${partyId}&startDate=${startDate}&endDate=${endDate}`;
+    const headers = new HttpHeaders().set('vyapariCode', localStorage.getItem('partyCode') || '');
+    return this.http.get(url, {headers});
   }
 
   getHelloLambda() {
     const url = `https://5txvte0v46.execute-api.ap-southeast-1.amazonaws.com/dev/hello`;
-    return this.http.get(url); // returns Observable
+    return this.http.get(url);
   }
 
-  subscribeToNotifications(vyapariId: string = this.mobileNumber) {
+  subscribeToNotifications(partyId: string) {
     if (this.swPush.isEnabled) {
       this.swPush
         .requestSubscription({
@@ -32,7 +32,7 @@ export class SharedServiceService {
           console.log('Received subscription:', subscription);
 
           const subscriptionOptions = {
-            vyapariId: vyapariId,
+            partyId: partyId,
             subscription: subscription,
           };
           console.log('Subscription options:', subscriptionOptions);

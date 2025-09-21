@@ -25,8 +25,8 @@ export class AppComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    const vyapariId = localStorage.getItem('vyapariId');
-    if (vyapariId) {
+    const partyId = localStorage.getItem('partyId');
+    if (partyId) {
       this.isLoggedIn = true;
     }else{
       this.isLoggedIn = false;
