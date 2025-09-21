@@ -6,11 +6,20 @@
   <div class="content">
     <ul>
       <li>
-        <button (click)="subscribeToNotifications()">
-          Allow Alerts
-          <mat-icon fontIcon="notifications_active" (click)="toggleDrawerFn()"></mat-icon>
+        NOTIFICATION ENABLED [सूचनाएँ चालू]: {{ hasNotificationPermission ? 'YES' : 'NO' }}
+      </li>
+      <li>
+        <button class="allow-alert-btn" (click)="subscribeToNotifications()" [disabled]="!hasNotificationPermission">
+          Allow Alerts [सूचनाएँ चालू करें]
+          <mat-icon fontIcon="notifications_active"></mat-icon>
         </button>
       </li>
     </ul>
+    <div>
+      <button (click)="logOut()" class="logoutBtn">
+        LOGOUT [लॉग आउट] 
+        <mat-icon fontIcon="logout"></mat-icon>
+      </button>
+    </div>
   </div>
 </div>

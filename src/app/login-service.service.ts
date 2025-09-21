@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from "../environments/environment";
 
 @Injectable()
 export class LoginServiceService {
   constructor(private http: HttpClient) {}
 
-  signUp() {
-    const url = `https://5txvte0v46.execute-api.ap-southeast-1.amazonaws.com/dev/hello`;
+  signUp(mobileNumber:string,partyCode:string) {
+    const url = `${environment.apiUrl}/party/validatePartyCode?mobileNumber=${mobileNumber}&partyCode=${partyCode}`;
     return this.http.get(url); // returns Observable
   }
 }

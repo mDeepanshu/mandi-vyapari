@@ -2,10 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { LoginScreenComponent } from './login-screen/login-screen.component';
 import { TransactionScreenComponent } from './transaction-screen/transaction-screen.component';
 import { SidebarComponent } from "./sidebar/sidebar.component";
-import { SwPush } from '@angular/service-worker';
-import { HttpClient } from '@angular/common/http';
-import { SharedServiceService } from './shared-service.service';
-// import { RouterOutlet } from '@angular/router';
+
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDrawer } from '@angular/material/sidenav';
 
@@ -13,7 +10,6 @@ import { MatDrawer } from '@angular/material/sidenav';
   selector: 'app-root',
   standalone: true,
   imports: [
-    // RouterOutlet,
     LoginScreenComponent,
     TransactionScreenComponent,
     MatSidenavModule,
@@ -26,18 +22,15 @@ export class AppComponent implements OnInit {
   title = 'mandi-vyapari';
 
   isLoggedIn: boolean = true;
-  constructor(
-    private swPush: SwPush,
-    private http: HttpClient,
-    private sharedService: SharedServiceService
-  ) {}
+  constructor() {}
+
   ngOnInit(): void {
-    if (false) {
+    const vyapariId = localStorage.getItem('vyapariId');
+    if (vyapariId) {
       this.isLoggedIn = true;
+    }else{
+      this.isLoggedIn = false;
     }
-    this.swPush.messages.subscribe((message) => {
-      console.log('Received push message:', message);
-    });
   }
 
   onLoginChange(isLoggedIn: boolean) {
@@ -46,11 +39,9 @@ export class AppComponent implements OnInit {
 
   @ViewChild('drawer') drawer!: MatDrawer;
 
-  // Default values for selects
   mode: 'side' | 'over' | 'push' = 'over';
   hasBackdrop: boolean | undefined = true;
 
-  // Function to toggle drawer
   toggleDrawer() {
     this.drawer.toggle();
   }

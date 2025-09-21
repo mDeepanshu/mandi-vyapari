@@ -1,15 +1,24 @@
-<form (submit)="onSubmit($event, mobileInput.value, otpInput.value)">
-    <div class="row">
-        <label for="mobile">Mobile:</label>
-        <input #mobileInput type="text" id="mobile" name="mobile" required>
+<div class="container">
+    <div class="logo">
+        <img src="icons/icon-512x512.png" alt="Logo" class="logo-image">
+        <br>
+        <h4 class="app-name">MANDI VYAPARI APP</h4>
     </div>
 
-    <div class="row">
-        <label for="otp">OTP:</label>
-        <input #otpInput type="text" id="otp" name="otp" required>
-    </div>
+    <form (submit)="onSubmit($event)">
+        <div class="row">
+            <label for="mobile">Mobile:</label>
+            <input #mobileInput type="text" id="mobile" name="mobile" [(ngModel)]="mobileNumber" required>
+        </div>
 
-    <div class="row">
-        <button type="submit">Login</button>
-    </div>
-</form>
+        <div class="row">
+            <label for="otp">OTP:</label>
+            <input #otpInput type="text" id="otp" name="otp" [(ngModel)]="otp" required>
+        </div>
+
+        <div class="row">
+            <button type="submit">Login</button>
+        </div>
+
+    </form>
+</div>

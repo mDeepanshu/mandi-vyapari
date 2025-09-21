@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import { SharedServiceService } from "../shared-service.service";
 
@@ -9,24 +9,48 @@ import { SharedServiceService } from "../shared-service.service";
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
 
   @Output() toggleDrawer: EventEmitter<boolean> = new EventEmitter<boolean>();
+  hasNotificationPermission: boolean = false;
 
   constructor(private sharedService: SharedServiceService) { }
+
+  ngOnInit(): void {
+    // Notification.permission !== 'granted' ? Notification.requestPermission().then(permission => {
+    //   if (permission === 'granted') {
+    //     // this.subscribeToNotifications();
+    //   }
+    // }) : this.subscribeToNotifications();
+    if (Notification.permission !== 'granted') {
+      this.hasNotificationPermission = false;
+    }else this.hasNotificationPermission = true;
+
+
+  }
 
   toggleDrawerFn() {
     this.toggleDrawer.emit(false);
   }
 
   subscribeToNotifications() {
-
-    const vyapariId = localStorage.getItem('vyapariId');
-    if (vyapariId) {
-      this.sharedService.subscribeToNotifications(vyapariId);
-    }else{
-      
-    }
+    console.log("Subscribing to notifications...");
+    
+    // const vyapariId = localStorage.getItem('vyapariId');
+    // if (vyapariId) {
+    //   this.sharedService.subscribeToNotifications(vyapariId);
+    // }else{
+      // console.warn("Vyapari ID not found in local storage. Cannot subscribe to notifications.");
+    // }
 
   }
+
+
+  
+  logOut(){
+    localStorage.removeItem('permanentAccessCode');
+    localStorage.removeItem('vyapariId');
+    window.location.reload();
+  }
+
 }

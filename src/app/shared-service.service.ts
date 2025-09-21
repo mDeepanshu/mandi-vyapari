@@ -6,14 +6,14 @@ import { SwPush } from '@angular/service-worker';
   providedIn: 'root',
 })
 export class SharedServiceService {
-  mobileNumber: string = '8349842228';
+  mobileNumber: string = '1955724a565';
   private readonly publicKey: string =
     'BFcAYkpjplEVe5f4dBBRpNZTlk-Fp-mdtqdex0DZEGiEIFtNy8GaM1Fge4UmIlf0n2yvyKrr9mUM-K88Wih5Djs';
 
   constructor(private http: HttpClient, private swPush: SwPush) {}
 
   getMyLedger(vyapariId: string, startDate: string, endDate: string) {
-    const url = `https://bate8khjqj.ap-south-1.awsapprunner.com/mandi/vyapari/ledger?vyapariId=${vyapariId}&startDate=${startDate}&endDate=${endDate}`;
+    const url = `http://localhost:8080/mandi/vyapari/ledger?vyapariId=${vyapariId}&startDate=${startDate}&endDate=${endDate}`;
     return this.http.get(url); // returns Observable
   }
 

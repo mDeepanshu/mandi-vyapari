@@ -1,9 +1,9 @@
 <div class="container">
   <div class="date_field">
     <mat-icon fontIcon="menu" (click)="toggleDrawerFn()" class="menuIcon"></mat-icon>
-    <input type="date" name="" id="" [value]="start"/>
-    <input type="date" name="" id="" [value]="end"/>
-    <button (click)="getTransactionData()">FETCH</button>
+    <input type="date" [(ngModel)]="start" [max]="today"/>
+    <input type="date" [(ngModel)]="end" [min]="start" [max]="today"/>
+    <button (click)="getTransactionData()">FETCH [खोजें]</button>
   </div>
   <hr />
   <div class="table">

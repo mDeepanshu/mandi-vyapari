@@ -2,12 +2,13 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { SharedServiceService } from '../shared-service.service';
 import { GroupedData } from './transaction.model';
 import { MatIconModule } from '@angular/material/icon';
+import {FormsModule} from '@angular/forms'
 import { SwPush } from '@angular/service-worker';
 
 @Component({
   selector: 'app-transaction-screen',
   standalone: true,
-  imports: [MatIconModule],
+  imports: [MatIconModule,FormsModule],
   templateUrl: './transaction-screen.component.html',
   styleUrl: './transaction-screen.component.scss',
 })
@@ -15,6 +16,7 @@ export class TransactionScreenComponent implements OnInit {
   transactionsArr: any = [];
   start: string = new Date().toISOString().slice(0, 10);
   end: string = new Date().toISOString().slice(0, 10);
+  today = new Date().toISOString().split('T')[0];
   // start: string = new Date().toISOString().slice(0, 10);
   @Output() toggleDrawer: EventEmitter<boolean> = new EventEmitter<boolean>();
   constructor(
@@ -23,13 +25,26 @@ export class TransactionScreenComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.sharedService.subscribeToNotifications(this.sharedService.mobileNumber);
+    this.sharedService.subscribeToNotifications("1955724a565");
     this.swPush.messages.subscribe((message) => {
+      console.log("Push message received: ", message);
+      
+      if (message) {
+        this.getTransactionData();              
+      }
     });
 
-    this.sharedService
-      .getMyLedger('194ab93ce0a', '2025-08-08', '2025-08-11')
-      .subscribe((data: any) => {
+    this.getTransactionData();
+  }
+
+  getTransactionData() {
+    // this.sharedService.getHelloLambda().subscribe((data: any) => {
+    //   console.log('Hello Lambda response:', data);
+    // });
+    let vyapariId = '1955724a565'; 
+    // const vyapariId = localStorage.getItem('vyapariId'); // Example vyapariId
+    if (vyapariId) {
+      this.sharedService.getMyLedger(vyapariId, this.start, this.end).subscribe((data: any) => {
         let transactionsData: any[] = data.responseBody.transactions;
         let groupedData: GroupedData[] = [];
         // let newDateIndex: number | null = null;
@@ -59,16 +74,7 @@ export class TransactionScreenComponent implements OnInit {
           }
         }
         this.transactionsArr = groupedData;
-      });
-  }
 
-  getTransactionData() {
-    // this.sharedService.getHelloLambda().subscribe((data: any) => {
-    //   console.log('Hello Lambda response:', data);
-    // });
-    const vyapariId = localStorage.getItem('vyapariId'); // Example vyapariId
-    if (vyapariId) {
-      this.sharedService.getMyLedger(vyapariId, this.start, this.end).subscribe((data: any) => {
       });
     }else console.log("vyapariId not found in localStorage");
   }

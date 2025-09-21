@@ -4,7 +4,7 @@
     padding: 10px;
 }
 
-button {
+.allow-alert-btn {
   background-color: #007bff; /* Primary blue */
   color: white;
   border: none;
@@ -28,4 +28,34 @@ button {
 
 ul{
     list-style-type: none;
+}
+
+button:disabled {
+  background-color: #6c757d; /* Disabled gray */
+  cursor: not-allowed;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90vh;
+}
+
+.logoutBtn{
+  background-color: #dc3545; /* Red color for logout */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  margin-left: 40px;
+  mat-icon {
+    margin-left: 8px;
+  }
 }

@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { SharedServiceService } from '../shared-service.service';
 import { LoginServiceService } from '../login-service.service';
+import {FormsModule} from '@angular/forms'
+
 @Component({
   selector: 'app-login-screen',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './login-screen.component.html',
   styleUrl: './login-screen.component.scss',
   providers: [LoginServiceService]
@@ -12,22 +14,19 @@ import { LoginServiceService } from '../login-service.service';
 export class LoginScreenComponent {
 
   @Output() valueChange = new EventEmitter<boolean>();
+  mobileNumber: string = '';
+  otp: string = '';
 
-  onSubmit(event: Event, mobileNumber: string, otp: string) {
+  onSubmit(event: Event) {
     event.preventDefault();
     this.valueChange.emit(true);
-    this.sharedService.mobileNumber = mobileNumber;
-    this.loginService.signUp().subscribe((response) => {
-      localStorage.setItem('permanentAccessCode', '9876');
-      localStorage.setItem('vyapariId', '6789');
-      // this.sharedService.subscribeToNotifications(this.sharedService.mobileNumber);
-
+    this.loginService.signUp(this.mobileNumber,this.otp).subscribe((response:any) => {
+      localStorage.setItem('permanentAccessCode', response.responseBody.code);
+      localStorage.setItem('vyapariId', response.responseBody.vyapariId);
+      this.sharedService.subscribeToNotifications(response.responseBody.vyapariId);
     });
   }
 
   constructor(private sharedService: SharedServiceService, private loginService: LoginServiceService) { }
-
-
-
 
 }

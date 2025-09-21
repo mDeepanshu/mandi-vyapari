@@ -1,12 +1,62 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(135deg, #e0f7fa, #ffffff);
+    height: 100vh;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 form {
-    padding-top: 20vh;
+    padding-top: 5vh;
     text-align: center;
 }
 
 .row {
-    width: 40%;
-    margin: 10px auto;        /* Centers the row horizontally */
-    text-align: start;        /* Keeps content inside aligned to left */
+    margin: 10px auto;
+    text-align: start;
     display: flex;
     flex-direction: column;
+}
+
+.logo-image {
+    max-width: 30vw;
+    max-height: 30vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ccc;
+
+}
+
+.app-name{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    /* Green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
