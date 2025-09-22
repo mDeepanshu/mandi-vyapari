@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:8080/mandi',
+  production: true,
+  apiUrl: 'https://bate8khjqj.ap-south-1.awsapprunner.com/mandi',
 };
