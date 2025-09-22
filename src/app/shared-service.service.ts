@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SwPush } from '@angular/service-worker';
+import { environment } from "../environments/environment";
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class SharedServiceService {
   constructor(private http: HttpClient, private swPush: SwPush) { }
 
   getMyLedger(partyId: string, startDate: string, endDate: string) {
-    const url = `http://localhost:8080/mandi/vyapari/ledger?vyapariId=${partyId}&startDate=${startDate}&endDate=${endDate}`;
+    const url = `${environment.apiUrl}/vyapari/ledger?vyapariId=${partyId}&startDate=${startDate}&endDate=${endDate}`;
     const headers = new HttpHeaders().set('vyapariCode', localStorage.getItem('partyCode') || '');
     return this.http.get(url, {headers});
   }
