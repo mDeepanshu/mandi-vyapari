@@ -34,15 +34,12 @@ export class SidebarComponent implements OnInit {
   }
 
   subscribeToNotifications() {
-    console.log("Subscribing to notifications...");
-    
-    // const partyId = localStorage.getItem('partyId');
-    // if (partyId) {
-    //   this.sharedService.subscribeToNotifications(partyId);
-    // }else{
-      // console.warn("Vyapari ID not found in local storage. Cannot subscribe to notifications.");
-    // }
-
+    const partyId = localStorage.getItem('partyId');
+    if (partyId) {
+      this.sharedService.subscribeToNotifications(partyId);
+    }else{
+      console.warn("Vyapari ID not found in local storage. Cannot subscribe to notifications.");
+    }
   }
 
 
