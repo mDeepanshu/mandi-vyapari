@@ -19,7 +19,7 @@ export class SharedServiceService {
   }
 
   getHelloLambda() {
-    const url = `https://5txvte0v46.execute-api.ap-southeast-1.amazonaws.com/dev/hello`;
+    const url = `${environment.lambdaUrl}/hello`;
     return this.http.get(url);
   }
 
@@ -30,17 +30,15 @@ export class SharedServiceService {
           serverPublicKey: this.publicKey,
         })
         .then((subscription) => {
-          console.log('Received subscription:', subscription);
-
           const subscriptionOptions = {
-            partyId: partyId,
+            vyapariId: partyId,
             subscription: subscription,
           };
           console.log('Subscription options:', subscriptionOptions);
 
           this.http
             .post(
-              'https://5txvte0v46.execute-api.ap-southeast-1.amazonaws.com/dev/subscribe',
+              `${environment.lambdaUrl}/subscribe`,
               subscriptionOptions
             )
             .subscribe(() => {
