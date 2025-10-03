@@ -9,7 +9,7 @@
         NOTIFICATION ENABLED [सूचनाएँ चालू]: {{ hasNotificationPermission ? 'YES' : 'NO' }}
       </li>
       <li>
-        <button class="allow-alert-btn" (click)="subscribeToNotifications()" [disabled]="hasNotificationPermission">
+        <button class="allow-alert-btn" (click)="subscribeToNotifications()">
           Allow Alerts [सूचनाएँ चालू करें]
           <mat-icon fontIcon="notifications_active"></mat-icon>
         </button>
