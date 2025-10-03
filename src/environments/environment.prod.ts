@@ -4,5 +4,5 @@ export const environment = {
   // lambdaUrl: 'http://localhost:3000/dev',
   
   apiUrl: 'https://bate8khjqj.ap-south-1.awsapprunner.com/mandi',
-  lambdaUrl: 'https://imll8stdk8.execute-api.ap-southeast-1.amazonaws.com/prod',
+  lambdaUrl: 'https://5txvte0v46.execute-api.ap-southeast-1.amazonaws.com/dev',
 };
