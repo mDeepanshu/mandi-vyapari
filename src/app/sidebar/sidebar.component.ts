@@ -17,16 +17,9 @@ export class SidebarComponent implements OnInit {
   constructor(private sharedService: SharedServiceService) { }
 
   ngOnInit(): void {
-    // Notification.permission !== 'granted' ? Notification.requestPermission().then(permission => {
-    //   if (permission === 'granted') {
-    //     // this.subscribeToNotifications();
-    //   }
-    // }) : this.subscribeToNotifications();
     if (Notification.permission !== 'granted') {
       this.hasNotificationPermission = false;
     }else this.hasNotificationPermission = true;
-
-
   }
 
   toggleDrawerFn() {
