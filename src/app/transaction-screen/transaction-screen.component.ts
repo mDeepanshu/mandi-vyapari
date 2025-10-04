@@ -14,10 +14,9 @@ import { SwPush } from '@angular/service-worker';
 })
 export class TransactionScreenComponent implements OnInit {
   transactionsArr: any = [];
-  start: string = new Date().toISOString().slice(0, 10);
-  end: string = new Date().toISOString().slice(0, 10);
-  today = new Date().toISOString().split('T')[0];
-  // start: string = new Date().toISOString().slice(0, 10);
+  start: string = new Date(new Date().setDate(new Date().getDate() - 1)).toISOString().slice(0, 10);
+  end: string = new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().slice(0, 10);
+  today = new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().split('T')[0];
   @Output() toggleDrawer: EventEmitter<boolean> = new EventEmitter<boolean>();
   constructor(
     private sharedService: SharedServiceService,
@@ -26,8 +25,6 @@ export class TransactionScreenComponent implements OnInit {
 
   ngOnInit() {
     this.swPush.messages.subscribe((message) => {
-      console.log("Push message received: ", message);
-      
       if (message) {
         this.getTransactionData();              
       }
@@ -42,7 +39,6 @@ export class TransactionScreenComponent implements OnInit {
       this.sharedService.getMyLedger(partyId, this.start, this.end).subscribe((data: any) => {
         let transactionsData: any[] = data.responseBody.transactions;
         let groupedData: GroupedData[] = [];
-        // let newDateIndex: number | null = null;
         let curr_date = ``;
 
         for (let i = transactionsData.length - 1; i >= 0; i--) {
