@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     const partyId = localStorage.getItem('partyId');
-    if (partyId) {
+    if (partyId && partyId!=="undefined") {
       this.isLoggedIn = true;
     }else{
       this.isLoggedIn = false;

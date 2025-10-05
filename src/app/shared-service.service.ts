@@ -15,7 +15,7 @@ export class SharedServiceService {
   getMyLedger(partyId: string, startDate: string, endDate: string) {
     const url = `${environment.apiUrl}/vyapari/ledger?vyapariId=${partyId}&startDate=${startDate}&endDate=${endDate}`;
     const headers = new HttpHeaders().set('vyapariCode', localStorage.getItem('partyCode') || '');
-    return this.http.get(url, {headers});
+    return this.http.get(url, { headers });
   }
 
   getHelloLambda() {
@@ -52,4 +52,10 @@ export class SharedServiceService {
       console.log('Service Worker is not enabled');
     }
   }
+
+  getPartyGlobal() {
+      const url = `${environment.apiUrl}/party/listAllParties`;
+      return this.http.get(url);
+  };
+
 }

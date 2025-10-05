@@ -6,7 +6,16 @@
   <div class="content">
     <ul>
       <li>
+        नाम: {{ userName }}
+      </li>
+      <li>
+        यूजर आईडी: {{ userId }}
+      </li>
+      <li>
         NOTIFICATION ENABLED [सूचनाएँ चालू]: {{ hasNotificationPermission ? 'YES' : 'NO' }}
+      </li>
+      <li>
+        मंडी मोबाइल - 9826306406
       </li>
       <li>
         <button class="allow-alert-btn" (click)="subscribeToNotifications()">
