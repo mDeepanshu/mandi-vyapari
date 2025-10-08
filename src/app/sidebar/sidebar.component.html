@@ -12,10 +12,13 @@
         यूजर आईडी: {{ userId }}
       </li>
       <li>
-        NOTIFICATION ENABLED [सूचनाएँ चालू]: {{ hasNotificationPermission ? 'YES' : 'NO' }}
-      </li>
-      <li>
         मंडी मोबाइल - 9826306406
+      </li>
+      <!-- <li>
+        <a href="upi://pay?pa=7deepanshu@axl&pn=DeepanshuMalviya&cu=INR">पैसे भेजें</a>
+      </li> -->
+      <li>
+        NOTIFICATION ENABLED [सूचनाएँ चालू]: {{ hasNotificationPermission ? 'YES' : 'NO' }}
       </li>
       <li>
         <button class="allow-alert-btn" (click)="subscribeToNotifications()">

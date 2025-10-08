@@ -10,5 +10,5 @@ export interface GroupedData {
   date: string;
   dr: number;
   cr: number;
-  items: { itemName: string; dr: number; cr: number }[];
+  items: { itemName: string; dr: number; cr: number; remark: string | null }[];
 }

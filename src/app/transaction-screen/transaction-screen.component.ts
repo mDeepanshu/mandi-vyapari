@@ -51,6 +51,7 @@ export class TransactionScreenComponent implements OnInit {
               itemName: element.itemName,
               dr: element.dr ? element.dr : "",
               cr: element.cr ? element.cr : "",
+              remark: element.remark ? ` | ${element.remark}` : "",
             });
           } else {
             curr_date = element.date;
@@ -59,7 +60,7 @@ export class TransactionScreenComponent implements OnInit {
               dr: element.dr,
               cr: element.cr,
               items: [
-                { itemName: element.itemName, dr: element.dr ? element.dr : "", cr: element.cr ? element.cr : "" },
+                { itemName: element.itemName, dr: element.dr ? element.dr : "", cr: element.cr ? element.cr : "",remark: element.remark ? ` | ${element.remark}` : "" },
               ],
             });
           }
