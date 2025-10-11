@@ -1,0 +1,8 @@
+<mat-dialog-content>
+    <div class="div">लॉगआउट करने के लिए इनपुट बॉक्स में logout टाइप करें।</div>
+    <div class="div"><input type="text" #message></div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">वापस</button>
+  <button mat-button color="warn" (click)="onConfirm(message.value)">लॉगआउट करें</button>
+</mat-dialog-actions>

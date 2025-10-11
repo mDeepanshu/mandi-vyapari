@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { SharedServiceService } from "../shared-service.service";
+import { MatDialog } from '@angular/material/dialog';
+import { CommonDialogComponent } from '../dialogs/common-dialog/common-dialog.component';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,14 +17,14 @@ export class SidebarComponent implements OnInit {
   hasNotificationPermission: boolean = false;
   userName: string | null = localStorage.getItem('userName');
   userId: string | null = localStorage.getItem('userId');
-  constructor(private sharedService: SharedServiceService) { }
+  constructor(private sharedService: SharedServiceService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     if (Notification.permission !== 'granted') {
       this.hasNotificationPermission = false;
     } else this.hasNotificationPermission = true;
-    
-    if (!this.userName || !this.userId || this.userName==="undefined" || this.userId==="undefined") {
+
+    if (!this.userName || !this.userId || this.userName === "undefined" || this.userId === "undefined") {
       this.sharedService.getPartyGlobal().subscribe((parties: any) => {
         const partyId = localStorage.getItem('partyId');
         const party = parties.responseBody.find((p: any) => p.partyId === partyId);
@@ -34,7 +36,7 @@ export class SidebarComponent implements OnInit {
         } else {
           console.warn("Party not found for partyId:", partyId);
         }
-      });        
+      });
     }
   }
 
@@ -56,6 +58,18 @@ export class SidebarComponent implements OnInit {
   logOut() {
     localStorage.clear();
     window.location.reload();
+  }
+
+
+  openConfirmDialog() {
+    const dialogRef = this.dialog.open(CommonDialogComponent, {
+      width: '350px',
+      data: {
+        title: 'Confirm Delete',
+        message: 'Are you sure you want to delete this item?'
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => result && this.logOut());
   }
 
 }
