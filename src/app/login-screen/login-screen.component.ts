@@ -15,12 +15,12 @@ export class LoginScreenComponent {
 
   @Output() valueChange = new EventEmitter<boolean>();
   mobileNumber: string = '';
-  otp: string = '';
+  idNo: string = '';
 
   onSubmit(event: Event) {
     event.preventDefault();
     this.valueChange.emit(true);
-    this.loginService.signUp(this.mobileNumber,this.otp).subscribe((response:any) => {
+    this.loginService.signUp(this.mobileNumber,this.idNo).subscribe((response:any) => {
       localStorage.setItem('partyCode', response.responseBody.partyCode);
       localStorage.setItem('partyId', response.responseBody.partyId);
       this.sharedService.subscribeToNotifications(response.responseBody.partyId);

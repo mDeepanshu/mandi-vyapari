@@ -17,6 +17,7 @@ export class TransactionScreenComponent implements OnInit {
   start: string = new Date(new Date().setDate(new Date().getDate() - 1)).toISOString().slice(0, 10);
   end: string = new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().slice(0, 10);
   today = new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().split('T')[0];
+  closingAmount: String|Number = '';
   @Output() toggleDrawer: EventEmitter<boolean> = new EventEmitter<boolean>();
   constructor(
     private sharedService: SharedServiceService,
@@ -38,6 +39,7 @@ export class TransactionScreenComponent implements OnInit {
     if (partyId) {
       this.sharedService.getMyLedger(partyId, this.start, this.end).subscribe((data: any) => {
         let transactionsData: any[] = data.responseBody.transactions;
+        this.closingAmount = data.responseBody.closingAmount;
         let groupedData: GroupedData[] = [];
         let curr_date = ``;
 

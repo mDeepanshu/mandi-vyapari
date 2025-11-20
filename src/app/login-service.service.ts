@@ -6,8 +6,8 @@ import { environment } from "../environments/environment";
 export class LoginServiceService {
   constructor(private http: HttpClient) {}
 
-  signUp(mobileNumber:string,partyCode:string) {
-    const url = `${environment.apiUrl}/party/validatePartyCode?mobileNumber=${mobileNumber}&partyCode=${partyCode}`;
+  signUp(mobileNumber:string,idNo:string) {
+    const url = `${environment.apiUrl}/party/validatePartyCode?mobileNumber=${mobileNumber}&idNo=${idNo}&partyCode=0000`;
     return this.http.get(url); // returns Observable
   }
 }

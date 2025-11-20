@@ -7,13 +7,13 @@
 
     <form (submit)="onSubmit($event)">
         <div class="row">
-            <label for="mobile">Mobile:</label>
+            <label for="mobile">Mobile/मोबाइल नंबर:</label>
             <input #mobileInput type="text" id="mobile" name="mobile" [(ngModel)]="mobileNumber" required>
         </div>
 
         <div class="row">
-            <label for="otp">OTP:</label>
-            <input #otpInput type="text" id="otp" name="otp" [(ngModel)]="otp" required>
+            <label for="idNo">ID/व्यापारी आई.डी.:</label>
+            <input #idNoInput type="text" id="idNo" name="idNo" [(ngModel)]="idNo" required>
         </div>
 
         <div class="row">

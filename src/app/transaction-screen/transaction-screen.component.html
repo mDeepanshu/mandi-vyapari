@@ -3,9 +3,11 @@
     <mat-icon fontIcon="menu" (click)="toggleDrawerFn()" class="menuIcon"></mat-icon>
     <input type="date" [(ngModel)]="start" [max]="today" />
     <input type="date" [(ngModel)]="end" [min]="start" [max]="today" />
-    <button (click)="getTransactionData()">FETCH [खोजें]</button>
+    <button (click)="getTransactionData()">खोजें</button>
   </div>
-  <hr />
+  <div class="cls_balance">
+    चुनी हुई तारीख तक का बकाया: {{ closingAmount }}
+  </div>
   <div class="table">
     @for (transactions of transactionsArr; track $index) {
     <div class="date">
