@@ -17,7 +17,17 @@
     </div>
     @for (item of transactions.items; track $index) {
     <div class="record">
-      <div>{{ item.itemName }}</div>
+      <div class="itemName">
+        <div class="checkboxdiv">
+          @if (item.itemName) {
+          <input type="checkbox">
+          }
+        </div>
+        <div class="itemnametext">
+          {{ item.itemName }}
+        </div>
+      </div>
+
       <div>{{ item.dr }}</div>
       <div>{{ item.cr }}{{ item.remark }}</div>
     </div>

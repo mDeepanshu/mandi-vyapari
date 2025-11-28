@@ -92,3 +92,8 @@ button {
 .menuIcon {
   cursor: pointer;
 }
+
+.record > .itemName {
+  display: flex !important;
+  align-items: center !important;
+}
