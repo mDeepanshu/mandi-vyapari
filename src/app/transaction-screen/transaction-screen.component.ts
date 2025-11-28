@@ -17,8 +17,9 @@ export class TransactionScreenComponent implements OnInit {
   start: string = new Date(new Date().setDate(new Date().getDate() - 1)).toISOString().slice(0, 10);
   end: string = new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().slice(0, 10);
   today = new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().split('T')[0];
-  closingAmount: String|Number = '';
+  closingAmount: String | Number = '';
   @Output() toggleDrawer: EventEmitter<boolean> = new EventEmitter<boolean>();
+  closingAmountOfDate: string = ""; // New variable to hold the label date
   constructor(
     private sharedService: SharedServiceService,
     private swPush: SwPush
@@ -42,6 +43,9 @@ export class TransactionScreenComponent implements OnInit {
         this.closingAmount = data.responseBody.closingAmount;
         let groupedData: GroupedData[] = [];
         let curr_date = ``;
+        const input = data.responseBody.closingAmountOfDate;
+        const [y, m, d] = input.split("-");
+        this.closingAmountOfDate = `${d}-${m}-${y}`; // Set the label date
 
         for (let i = transactionsData.length - 1; i >= 0; i--) {
           const element = transactionsData[i];
@@ -62,7 +66,7 @@ export class TransactionScreenComponent implements OnInit {
               dr: element.dr,
               cr: element.cr,
               items: [
-                { itemName: element.itemName, dr: element.dr ? element.dr : "", cr: element.cr ? element.cr : "",remark: element.remark ? ` | ${element.remark}` : "" },
+                { itemName: element.itemName, dr: element.dr ? element.dr : "", cr: element.cr ? element.cr : "", remark: element.remark ? ` | ${element.remark}` : "" },
               ],
             });
           }

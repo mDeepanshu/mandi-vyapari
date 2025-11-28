@@ -6,7 +6,7 @@
     <button (click)="getTransactionData()">खोजें</button>
   </div>
   <div class="cls_balance">
-    चुनी हुई तारीख तक का बकाया: {{ closingAmount }}
+    {{closingAmountOfDate}} तक का बकाया: {{ closingAmount }}
   </div>
   <div class="table">
     @for (transactions of transactionsArr; track $index) {
