@@ -43,9 +43,9 @@ export class TransactionScreenComponent implements OnInit {
         this.closingAmount = data.responseBody.closingAmount;
         let groupedData: GroupedData[] = [];
         let curr_date = ``;
-        const input = data.responseBody.closingAmountOfDate;
-        const [y, m, d] = input.split("-");
-        this.closingAmountOfDate = `${d}-${m}-${y}`; // Set the label date
+        const input : string = data?.responseBody?.closingAmountOfDate;
+        const [y, m, d] = input?.split("-");
+        if(y && m && d) this.closingAmountOfDate = `${d}-${m}-${y}`; // Set the label date
 
         for (let i = transactionsData.length - 1; i >= 0; i--) {
           const element = transactionsData[i];
