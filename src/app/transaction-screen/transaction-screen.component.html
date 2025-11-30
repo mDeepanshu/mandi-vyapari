@@ -6,7 +6,7 @@
     <button (click)="getTransactionData()">खोजें</button>
   </div>
   <div class="cls_balance">
-    {{closingAmountOfDate}} तक का बकाया: {{ closingAmount }}
+    {{closingAmountOfDate}} <span translate="no" class="notranslate">. तक का बकाया</span>: {{ closingAmount }}
   </div>
   <div class="table">
     @for (transactions of transactionsArr; track $index) {
@@ -18,14 +18,10 @@
     @for (item of transactions.items; track $index) {
     <div class="record">
       <div class="itemName">
-        <div class="checkboxdiv">
-          @if (item.itemName) {
-          <input type="checkbox">
-          }
-        </div>
-        <div class="itemnametext">
-          {{ item.itemName }}
-        </div>
+        @if (item.itemName) {
+        <input type="checkbox">
+        }
+        {{ item.itemName }}
       </div>
 
       <div>{{ item.dr }}</div>

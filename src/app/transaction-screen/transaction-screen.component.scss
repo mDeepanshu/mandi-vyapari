@@ -96,4 +96,15 @@ button {
 .record > .itemName {
   display: flex !important;
   align-items: center !important;
+  width: 40% !important;
+}
+
+input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+}
+
+.notranslate {
+  unicode-bidi: plaintext;
 }
