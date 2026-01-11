@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { SharedServiceService } from '../shared-service.service';
-import { LoginServiceService } from '../login-service.service';
+import { SharedServiceService } from '../../shared-service.service';
+import { LoginServiceService } from '../../login-service.service';
 import {FormsModule} from '@angular/forms'
 
 @Component({

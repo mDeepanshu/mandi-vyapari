@@ -1,22 +1,27 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { SharedServiceService } from "../shared-service.service";
+import { SharedServiceService } from "../../shared-service.service";
 import { MatDialog } from '@angular/material/dialog';
-import { CommonDialogComponent } from '../dialogs/common-dialog/common-dialog.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { CommonDialogComponent } from '../../dialogs/common-dialog/common-dialog.component';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [MatIconModule],
+  imports: [MatIconModule, MatSlideToggleModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent implements OnInit {
 
+
   @Output() toggleDrawer: EventEmitter<boolean> = new EventEmitter<boolean>();
   hasNotificationPermission: boolean = false;
   userName: string | null = localStorage.getItem('userName');
   userId: string | null = localStorage.getItem('userId');
+
+  @Output() isHindiChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   constructor(private sharedService: SharedServiceService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -38,6 +43,11 @@ export class SidebarComponent implements OnInit {
         }
       });
     }
+  }
+
+  toggleLanguage(isHindi: boolean) {
+    this.isHindiChange.emit(isHindi);
+    localStorage.setItem('isHindi', isHindi ? 'true' : 'false');
   }
 
   toggleDrawerFn() {

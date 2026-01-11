@@ -1,18 +1,21 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { SharedServiceService } from '../shared-service.service';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { SharedServiceService } from '../../shared-service.service';
 import { GroupedData } from './transaction.model';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms'
 import { SwPush } from '@angular/service-worker';
+import { ItemNameTranslatePipe } from '../../utils/pipes/itemNameTranslate';
+
 
 @Component({
   selector: 'app-transaction-screen',
   standalone: true,
-  imports: [MatIconModule, FormsModule],
+  imports: [MatIconModule, FormsModule, ItemNameTranslatePipe],
   templateUrl: './transaction-screen.component.html',
   styleUrl: './transaction-screen.component.scss',
 })
 export class TransactionScreenComponent implements OnInit {
+
   transactionsArr: any = [];
   start: string = new Date(new Date().setDate(new Date().getDate() - 1)).toISOString().slice(0, 10);
   end: string = new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().slice(0, 10);
@@ -20,6 +23,9 @@ export class TransactionScreenComponent implements OnInit {
   closingAmount: String | Number = '';
   @Output() toggleDrawer: EventEmitter<boolean> = new EventEmitter<boolean>();
   closingAmountOfDate: string = ""; // New variable to hold the label date
+  // isHindi: boolean = false;
+  @Input() isHindi: boolean = false;
+
   constructor(
     private sharedService: SharedServiceService,
     private swPush: SwPush
@@ -31,6 +37,7 @@ export class TransactionScreenComponent implements OnInit {
         this.getTransactionData();
       }
     });
+    this.isHindi = localStorage.getItem('isHindi') === 'true';
 
     this.getTransactionData();
   }
@@ -43,9 +50,9 @@ export class TransactionScreenComponent implements OnInit {
         this.closingAmount = data.responseBody.closingAmount;
         let groupedData: GroupedData[] = [];
         let curr_date = ``;
-        const input : string = data?.responseBody?.closingAmountOfDate;
+        const input: string = data?.responseBody?.closingAmountOfDate;
         const [y, m, d] = input?.split("-");
-        if(y && m && d) this.closingAmountOfDate = `${d}-${m}-${y}`; // Set the label date
+        if (y && m && d) this.closingAmountOfDate = `${d}-${m}-${y}`; // Set the label date
 
         for (let i = transactionsData.length - 1; i >= 0; i--) {
           const element = transactionsData[i];

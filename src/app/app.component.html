@@ -1,13 +1,10 @@
 @if (isLoggedIn) {
-<mat-drawer-container
-  class="example-container"
-  [hasBackdrop]="hasBackdrop"
->
+<mat-drawer-container class="example-container" [hasBackdrop]="hasBackdrop">
   <mat-drawer #drawer [mode]="mode" style="width: 80%">
-    <app-sidebar (toggleDrawer)="toggleDrawer()"></app-sidebar>
+    <app-sidebar (toggleDrawer)="toggleDrawer()" (isHindiChange)="toggleLanguage($event)"></app-sidebar>
   </mat-drawer>
   <mat-drawer-content>
-    <app-transaction-screen (toggleDrawer)="toggleDrawer()"></app-transaction-screen>
+    <app-transaction-screen (toggleDrawer)="toggleDrawer()" [isHindi]="isHindi"></app-transaction-screen>
   </mat-drawer-content>
 </mat-drawer-container>
 } @else {

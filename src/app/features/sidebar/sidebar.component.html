@@ -14,9 +14,9 @@
       <li>
         मंडी मोबाइल - 9826306406
       </li>
-      <!-- <li>
-        <a href="upi://pay?pa=hon.malviya2000-1@okicici&cu=INR">पैसे भेजें</a>
-      </li> -->
+      <li>
+        <a href="upi://pay?pa=8989806515@ybl&pn=Shreyanshu%20Malviya&am=1&cu=INR&tn=Payment">पैसे भेजें</a>
+      </li>
       <li>
         NOTIFICATION ENABLED [सूचनाएँ चालू]: {{ hasNotificationPermission ? 'YES' : 'NO' }}
       </li>
@@ -26,10 +26,16 @@
           <mat-icon fontIcon="notifications_active"></mat-icon>
         </button>
       </li>
+      <li>
+        English [अंग्रेज़ी] / हिंदी
+        <mat-slide-toggle
+          (change)="toggleLanguage($event.checked)"
+        ></mat-slide-toggle>
+      </li>
     </ul>
     <div>
       <button (click)="openConfirmDialog()" class="logoutBtn">
-        LOGOUT [लॉग आउट] 
+        LOGOUT [लॉग आउट]
         <mat-icon fontIcon="logout"></mat-icon>
       </button>
     </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { LoginScreenComponent } from './login-screen/login-screen.component';
-import { TransactionScreenComponent } from './transaction-screen/transaction-screen.component';
-import { SidebarComponent } from "./sidebar/sidebar.component";
+import { LoginScreenComponent } from './features/login-screen/login-screen.component';
+import { TransactionScreenComponent } from './features/transaction-screen/transaction-screen.component';
+import { SidebarComponent } from "./features/sidebar/sidebar.component";
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDrawer } from '@angular/material/sidenav';
@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   title = 'mandi-vyapari';
 
   isLoggedIn: boolean = true;
+  isHindi: boolean = false;
   constructor() {}
 
   ngOnInit(): void {
@@ -32,6 +33,11 @@ export class AppComponent implements OnInit {
       this.isLoggedIn = false;
     }
   }
+
+  toggleLanguage(isHindi: boolean) {
+    this.isHindi = isHindi;
+  }
+
 
   onLoginChange(isLoggedIn: boolean) {
     this.isLoggedIn = isLoggedIn;

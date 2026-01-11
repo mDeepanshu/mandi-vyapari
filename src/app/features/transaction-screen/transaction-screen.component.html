@@ -21,7 +21,7 @@
         @if (item.itemName) {
         <input type="checkbox">
         }
-        {{ item.itemName }}
+        {{ item.itemName  | itemNameTranslate:isHindi }}
       </div>
 
       <div>{{ item.dr }}</div>
