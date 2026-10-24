@@ -2,7 +2,7 @@
   "name": "Good Prize Industries",
   "short_name": "Good Prize Industries",
   "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "background_color": "#fbfcff",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
