@@ -66,6 +66,40 @@
               "outputHashing": "all",
               "serviceWorker": "ngsw-config.json"
             },
+            "hmb": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "10kB",
+                  "maximumError": "20kB"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.hmb.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "serviceWorker": "ngsw-config.json",
+              "outputPath": "dist/mandi-vyapari-hmb",
+              "assets": [
+                {
+                  "glob": "**/*",
+                  "input": "public",
+                  "ignore": ["icons/**", "logo.png", "manifest.webmanifest", "New folder/**"]
+                },
+                {
+                  "glob": "**/*",
+                  "input": "branding/hmb"
+                }
+              ]
+            },
             "development": {
               "optimization": false,
               "extractLicenses": false,
@@ -79,6 +113,9 @@
           "configurations": {
             "production": {
               "buildTarget": "mandi-vyapari:build:production"
+            },
+            "hmb": {
+              "buildTarget": "mandi-vyapari:build:hmb"
             },
             "development": {
               "buildTarget": "mandi-vyapari:build:development"

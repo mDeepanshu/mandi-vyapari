@@ -7,7 +7,8 @@ export class LoginServiceService {
   constructor(private http: HttpClient) {}
 
   signUp(mobileNumber:string,idNo:string) {
-    const url = `${environment.apiUrl}/party/validatePartyCode?mobileNumber=${mobileNumber}&idNo=${idNo}&partyCode=0000`;
+    // No partyCode: the HIS server ignores it when idNo is given, and HMB's lambda would filter on it
+    const url = `${environment.apiUrl}/party/validatePartyCode?mobileNumber=${mobileNumber}&idNo=${idNo}`;
     return this.http.get(url); // returns Observable
   }
 }

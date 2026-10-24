@@ -13,10 +13,29 @@ npm start                     # ng serve, dev config, http://localhost:4200
 npm run build                 # production build (default config) -> dist/mandi-vyapari/{browser,server}
 npm run watch                 # dev build in watch mode
 npm run serve:ssr:mandi-vyapari   # run the built Express SSR server (PORT env, default 4000)
+npm run build:hmb             # HMB client build -> dist/mandi-vyapari-hmb
+npm run deploy:hmb            # build HMB + firebase deploy (site hmb-vyapari, project hmb-application)
+ng serve --configuration hmb  # run locally against HMB's backends
 npm test                      # Karma + Jasmine
 ```
 
 There are no spec files: the component schematic in `angular.json` sets `skipTests: true`. No linter or formatter is configured. Use `.editorconfig` instead: 2-space indent, single quotes in `.ts`.
+
+## Two clients, one codebase
+
+The same code serves two separate mandi clients, chosen at build time. **Never mix their data or backends.**
+
+| | HIS (default `production` build) | HMB (`--configuration hmb`) |
+|---|---|---|
+| Environment | `environment.prod.ts` | `environment.hmb.ts` |
+| Hosting | Vercel, auto-deploy on push to `main` (`mva.make73.com`) | Firebase Hosting site `hmb-vyapari` in project `hmb-application`, deployed with `npm run deploy:hmb` |
+| API (`apiUrl`) | Spring server on App Runner (`/mandi` prefix) | `mandi-lambda-core` stage `hmb` (no prefix) |
+| Push (`lambdaUrl`) | `mandi-vyapari-lambda` stage `dev` (Neon) | `mandi-vyapari-lambda` stage `hmb` (HMB Supabase, table `push_subscriptions`) |
+| Branding | `public/` (icons, `logo.png`, manifest) | `branding/hmb/` replaces those files in the build |
+
+- Client-specific values (URLs, `mandiPhone`) belong in the environment files, not in components.
+- HMB's lambda returns different shapes than the Spring server for login (`validatePartyCode` returns a list of snake_case rows) and possibly the party list. The login screen and sidebar accept both shapes, so keep that when touching them.
+- HMB's API CORS (`mandi-lambda-core/serverless.ts`, `originsByStage.hmb`) must list the HMB app's origins and allow the `vyapariCode` header.
 
 ## Architecture
 

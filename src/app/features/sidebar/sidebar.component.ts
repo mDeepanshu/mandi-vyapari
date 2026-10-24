@@ -6,6 +6,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CommonDialogComponent } from '../../dialogs/common-dialog/common-dialog.component';
 import { PayDialogComponent } from '../../dialogs/pay-dialog/pay-dialog.component';
 import { SHOW_UPI_PAYMENT } from '../../utils/constants/payment';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-sidebar',
@@ -23,6 +24,8 @@ export class SidebarComponent implements OnInit {
   userId: string | null = localStorage.getItem('userId');
   isHindi: boolean = localStorage.getItem('isHindi') === 'true';
   showUpiPayment = SHOW_UPI_PAYMENT;
+  mandiPhone = environment.mandiPhone;
+  mandiPhoneHref = 'tel:' + environment.mandiPhone.replace(/\s/g, '');
 
   @Output() isHindiChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -36,12 +39,14 @@ export class SidebarComponent implements OnInit {
     if (!this.userName || !this.userId || this.userName === "undefined" || this.userId === "undefined") {
       this.sharedService.getPartyGlobal().subscribe((parties: any) => {
         const partyId = localStorage.getItem('partyId');
-        const party = parties.responseBody.find((p: any) => p.partyId === partyId);
+        // HMB's lambda may return snake_case rows instead of the HIS server's camelCase
+        const party = parties.responseBody.find((p: any) => (p.partyId ?? p.party_id) === partyId);
         if (party) {
+          const idNo = party.idNo ?? party.id_no;
           this.userName = party.name;
-          this.userId = party.idNo;
+          this.userId = idNo;
           localStorage.setItem('userName', party.name);
-          localStorage.setItem('userId', party.idNo);
+          localStorage.setItem('userId', idNo);
         } else {
           console.warn("Party not found for partyId:", partyId);
         }

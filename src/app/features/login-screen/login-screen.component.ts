@@ -36,16 +36,19 @@ export class LoginScreenComponent {
       next: (response: any) => {
         this.isLoading = false;
         // Backend returns 200 with responseBody "Party not found" for wrong details,
-        // so only treat it as a login when an actual party comes back
-        const party = response?.responseBody;
-        if (!party?.partyId) {
+        // so only treat it as a login when an actual party comes back.
+        // HIS (Spring) returns one camelCase party; HMB's lambda returns a list of DB rows.
+        const body = response?.responseBody;
+        const party = Array.isArray(body) ? body[0] : body;
+        const partyId = party?.partyId ?? party?.party_id;
+        if (!partyId) {
           this.errorMessage = 'मोबाइल नंबर या व्यापारी आई.डी. गलत है।';
           return;
         }
-        localStorage.setItem('partyCode', party.partyCode);
-        localStorage.setItem('partyId', party.partyId);
+        localStorage.setItem('partyCode', party.partyCode ?? party.party_code);
+        localStorage.setItem('partyId', partyId);
         this.valueChange.emit(true);
-        this.sharedService.subscribeToNotifications(party.partyId);
+        this.sharedService.subscribeToNotifications(partyId);
       },
       error: () => {
         this.isLoading = false;

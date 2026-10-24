@@ -17,11 +17,11 @@
   <nav class="menu">
     <div class="section-label">{{ showUpiPayment ? 'संपर्क और भुगतान' : 'संपर्क' }}</div>
 
-    <a class="menu-item" href="tel:9826306406">
+    <a class="menu-item" [href]="mandiPhoneHref">
       <span class="item-icon"><mat-icon fontIcon="call"></mat-icon></span>
       <span class="item-text">
         <span class="primary">मंडी मोबाइल</span>
-        <span class="secondary">9826306406</span>
+        <span class="secondary">{{ mandiPhone }}</span>
       </span>
       <mat-icon class="trailing" fontIcon="chevron_right"></mat-icon>
     </a>

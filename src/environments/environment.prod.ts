@@ -5,4 +5,5 @@ export const environment = {
   
   apiUrl: 'https://bate8khjqj.ap-south-1.awsapprunner.com/mandi',
   lambdaUrl: 'https://5txvte0v46.execute-api.ap-southeast-1.amazonaws.com/dev',
+  mandiPhone: '9826306406',
 };

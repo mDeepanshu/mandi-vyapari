@@ -1,0 +1,12 @@
+{
+  "projects": {
+    "default": "hmb-application"
+  },
+  "targets": {
+    "hmb-application": {
+      "hosting": {
+        "hmb-vyapari": ["hmb-vyapari"]
+      }
+    }
+  }
+}
