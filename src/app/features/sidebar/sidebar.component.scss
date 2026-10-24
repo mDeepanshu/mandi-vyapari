@@ -1,68 +1,202 @@
-.close-box{
-    display: flex;
-    justify-content: flex-end;
-    padding: 10px;
+$primary: #1976d2;
+$primary-dark: #0d47a1;
+$text: #1f2937;
+$text-muted: #6b7280;
+$divider: #e5e7eb;
+
+:host {
+  display: block;
+  height: 100%;
 }
 
-li{
-    margin: 10px 0;
-    font-size: 16px;
-    font-weight: 500;
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #fff;
+  color: $text;
 }
 
-.allow-alert-btn {
-  background-color: #007bff; /* Primary blue */
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
+// Match the slide toggle to the app's blue instead of the Material theme's violet-blue.
+// The theme sets these tokens on the toggle element itself, so they must be overridden there.
+.menu-item .mat-mdc-slide-toggle {
+  --mdc-switch-selected-track-color: #{$primary};
+  --mdc-switch-selected-hover-track-color: #{$primary};
+  --mdc-switch-selected-focus-track-color: #{$primary};
+  --mdc-switch-selected-pressed-track-color: #{$primary};
+  --mdc-switch-selected-icon-color: #{$primary};
+}
 
+.profile {
+  position: relative;
+  padding: 28px 20px 22px;
+  background: linear-gradient(135deg, $primary-dark, $primary);
+  color: #fff;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
 
-  mat-icon {
-    margin-left: 8px;
+  &:active {
+    background: rgba(255, 255, 255, 0.15);
   }
 }
 
-.closebtn{
-    cursor: pointer;
-}
-
-ul{
-    list-style-type: none;
-    padding: 5px;
-}
-
-button:disabled {
-  background-color: #6c757d; /* Disabled gray */
-  cursor: not-allowed;
-}
-
-.content{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 90vh;
-}
-
-.logoutBtn{
-  background-color: #dc3545; /* Red color for logout */
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-
+.avatar {
   display: flex;
   align-items: center;
-  margin-left: 40px;
-  mat-icon {
-    margin-left: 8px;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  background: #fff;
+  color: $primary;
+  font-size: 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.name {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.user-id {
+  margin-top: 4px;
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.menu {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 12px;
+}
+
+.section-label {
+  padding: 16px 8px 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: $text-muted;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 56px;
+  padding: 8px;
+  border-radius: 12px;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  &:active {
+    background: #f3f4f6;
+  }
+}
+
+button.menu-item {
+  width: 100%;
+  border: none;
+  background: none;
+  font: inherit;
+  text-align: left;
+}
+
+.item-icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #e3f2fd;
+  color: $primary;
+}
+
+.item-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+
+  .primary {
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .secondary {
+    margin-top: 2px;
+    font-size: 12.5px;
+    color: $text-muted;
+  }
+}
+
+.trailing {
+  color: #9ca3af;
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #e8f5e9;
+  color: #2e7d32;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.enable-btn {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 999px;
+  background: $primary;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.footer {
+  padding: 16px 20px 24px;
+  border-top: 1px solid $divider;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 46px;
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  background: #fef2f2;
+  color: #dc2626;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:active {
+    background: #fee2e2;
   }
 }

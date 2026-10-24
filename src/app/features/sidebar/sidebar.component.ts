@@ -4,6 +4,8 @@ import { SharedServiceService } from "../../shared-service.service";
 import { MatDialog } from '@angular/material/dialog';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CommonDialogComponent } from '../../dialogs/common-dialog/common-dialog.component';
+import { PayDialogComponent } from '../../dialogs/pay-dialog/pay-dialog.component';
+import { SHOW_UPI_PAYMENT } from '../../utils/constants/payment';
 
 @Component({
   selector: 'app-sidebar',
@@ -19,6 +21,8 @@ export class SidebarComponent implements OnInit {
   hasNotificationPermission: boolean = false;
   userName: string | null = localStorage.getItem('userName');
   userId: string | null = localStorage.getItem('userId');
+  isHindi: boolean = localStorage.getItem('isHindi') === 'true';
+  showUpiPayment = SHOW_UPI_PAYMENT;
 
   @Output() isHindiChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -46,6 +50,7 @@ export class SidebarComponent implements OnInit {
   }
 
   toggleLanguage(isHindi: boolean) {
+    this.isHindi = isHindi;
     this.isHindiChange.emit(isHindi);
     localStorage.setItem('isHindi', isHindi ? 'true' : 'false');
   }
@@ -57,7 +62,9 @@ export class SidebarComponent implements OnInit {
   subscribeToNotifications() {
     const partyId = localStorage.getItem('partyId');
     if (partyId) {
-      this.sharedService.subscribeToNotifications(partyId);
+      this.sharedService.subscribeToNotifications(partyId).then(() => {
+        this.hasNotificationPermission = Notification.permission === 'granted';
+      });
     } else {
       console.warn("Vyapari ID not found in local storage. Cannot subscribe to notifications.");
     }
@@ -70,6 +77,10 @@ export class SidebarComponent implements OnInit {
     window.location.reload();
   }
 
+
+  openPayDialog() {
+    this.dialog.open(PayDialogComponent, { width: '380px', maxWidth: '92vw' });
+  }
 
   openConfirmDialog() {
     const dialogRef = this.dialog.open(CommonDialogComponent, {

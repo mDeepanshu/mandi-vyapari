@@ -1,43 +1,71 @@
-<div class="container">
-  <div class="close-box">
-    <mat-icon fontIcon="close" (click)="toggleDrawerFn()" class="closebtn"></mat-icon>
-  </div>
-  <hr />
-  <div class="content">
-    <ul>
-      <li>
-        नाम: {{ userName }}
-      </li>
-      <li>
-        यूजर आईडी: {{ userId }}
-      </li>
-      <li>
-        मंडी मोबाइल - 9826306406
-      </li>
-      <li>
-        <a href="upi://pay?pa=8989806515@ybl&pn=Shreyanshu%20Malviya&am=1&cu=INR&tn=Payment">पैसे भेजें</a>
-      </li>
-      <li>
-        NOTIFICATION ENABLED [सूचनाएँ चालू]: {{ hasNotificationPermission ? 'YES' : 'NO' }}
-      </li>
-      <li>
-        <button class="allow-alert-btn" (click)="subscribeToNotifications()">
-          Allow Alerts [सूचनाएँ चालू करें]
-          <mat-icon fontIcon="notifications_active"></mat-icon>
-        </button>
-      </li>
-      <li>
-        English [अंग्रेज़ी] / हिंदी
-        <mat-slide-toggle
-          (change)="toggleLanguage($event.checked)"
-        ></mat-slide-toggle>
-      </li>
-    </ul>
-    <div>
-      <button (click)="openConfirmDialog()" class="logoutBtn">
-        LOGOUT [लॉग आउट]
-        <mat-icon fontIcon="logout"></mat-icon>
-      </button>
+<div class="sidebar">
+  <header class="profile">
+    <button class="close-btn" type="button" aria-label="Close menu" (click)="toggleDrawerFn()">
+      <mat-icon fontIcon="close"></mat-icon>
+    </button>
+    <div class="avatar">
+      @if (userName && userName !== 'undefined') {
+      {{ userName.charAt(0) }}
+      } @else {
+      <mat-icon fontIcon="person"></mat-icon>
+      }
     </div>
-  </div>
+    <div class="name">{{ userName || '—' }}</div>
+    <div class="user-id">यूजर आईडी: {{ userId || '—' }}</div>
+  </header>
+
+  <nav class="menu">
+    <div class="section-label">{{ showUpiPayment ? 'संपर्क और भुगतान' : 'संपर्क' }}</div>
+
+    <a class="menu-item" href="tel:9826306406">
+      <span class="item-icon"><mat-icon fontIcon="call"></mat-icon></span>
+      <span class="item-text">
+        <span class="primary">मंडी मोबाइल</span>
+        <span class="secondary">9826306406</span>
+      </span>
+      <mat-icon class="trailing" fontIcon="chevron_right"></mat-icon>
+    </a>
+
+    @if (showUpiPayment) {
+    <button class="menu-item" type="button" (click)="openPayDialog()">
+      <span class="item-icon"><mat-icon fontIcon="currency_rupee"></mat-icon></span>
+      <span class="item-text">
+        <span class="primary">पैसे भेजें</span>
+        <span class="secondary">UPI ID से भुगतान करें</span>
+      </span>
+      <mat-icon class="trailing" fontIcon="chevron_right"></mat-icon>
+    </button>
+    }
+
+    <div class="section-label">सेटिंग्स</div>
+
+    <div class="menu-item">
+      <span class="item-icon"><mat-icon fontIcon="notifications"></mat-icon></span>
+      <span class="item-text">
+        <span class="primary">सूचनाएँ</span>
+        <span class="secondary">Notifications</span>
+      </span>
+      @if (hasNotificationPermission) {
+      <span class="status-badge">चालू</span>
+      } @else {
+      <button class="enable-btn" type="button" (click)="subscribeToNotifications()">चालू करें</button>
+      }
+    </div>
+
+    <label class="menu-item">
+      <span class="item-icon"><mat-icon fontIcon="translate"></mat-icon></span>
+      <span class="item-text">
+        <span class="primary">हिंदी में नाम</span>
+        <span class="secondary">Item names in Hindi</span>
+      </span>
+      <mat-slide-toggle [checked]="isHindi" (change)="toggleLanguage($event.checked)"></mat-slide-toggle>
+    </label>
+  </nav>
+
+  <footer class="footer">
+    <button class="logout-btn" type="button" (click)="openConfirmDialog()">
+      <mat-icon fontIcon="logout"></mat-icon>
+      लॉग आउट
+    </button>
+  </footer>
 </div>

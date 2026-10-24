@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>पैसे भेजें</h2>
+<mat-dialog-content>
+  <p class="intro">इस UPI ID पर अपने UPI ऐप (PhonePe, Google Pay, Paytm) से भुगतान करें।</p>
+
+  <div class="upi-box">
+    <div class="upi-label">UPI ID</div>
+    <div class="upi-row">
+      <span class="upi-id">{{ upiId }}</span>
+      <button class="copy-btn" [class.copied]="copied" type="button" (click)="copyUpiId()">
+        <mat-icon [fontIcon]="copied ? 'check' : 'content_copy'"></mat-icon>
+        {{ copied ? 'कॉपी हो गया' : 'कॉपी करें' }}
+      </button>
+    </div>
+    @if (payeeName) {
+    <div class="payee">नाम: {{ payeeName }}</div>
+    }
+  </div>
+
+  <ol class="steps">
+    <li>ऊपर से UPI ID कॉपी करें।</li>
+    <li>अपना UPI ऐप खोलें और <b>"UPI ID पर भेजें"</b> (Pay to UPI ID) चुनें।</li>
+    @if (payeeName) {
+    <li>UPI ID पेस्ट करें और जाँचें कि नाम <b>{{ payeeName }}</b> दिख रहा है।</li>
+    } @else {
+    <li>UPI ID पेस्ट करें।</li>
+    }
+    <li>राशि डालें और UPI PIN से भुगतान करें।</li>
+  </ol>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button class="close-btn" type="button" (click)="close()">बंद करें</button>
+</mat-dialog-actions>

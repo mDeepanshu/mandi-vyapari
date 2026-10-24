@@ -23,9 +23,9 @@ export class SharedServiceService {
     return this.http.get(url);
   }
 
-  subscribeToNotifications(partyId: string) {
+  subscribeToNotifications(partyId: string): Promise<void> {
     if (this.swPush.isEnabled) {
-      this.swPush
+      return this.swPush
         .requestSubscription({
           serverPublicKey: this.publicKey,
         })
@@ -50,6 +50,7 @@ export class SharedServiceService {
         });
     } else {
       console.log('Service Worker is not enabled');
+      return Promise.resolve();
     }
   }
 
