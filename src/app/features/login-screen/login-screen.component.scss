@@ -54,6 +54,18 @@ button {
     cursor: pointer;
 }
 
+button:disabled {
+    opacity: 0.7;
+    cursor: default;
+}
+
+.error {
+    max-width: 260px;
+    margin: 10px auto 0;
+    color: #d32f2f;
+    font-size: 14px;
+}
+
 input {
     padding: 10px;
     font-size: 16px;

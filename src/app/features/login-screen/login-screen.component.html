@@ -1,6 +1,6 @@
 <div class="container">
     <div class="logo">
-        <img src="icons/icon-512x512.png" alt="Logo" class="logo-image">
+        <img src="logo.png" alt="Logo" class="logo-image">
         <br>
         <h4 class="app-name">MANDI VYAPARI APP</h4>
     </div>
@@ -16,8 +16,12 @@
             <input #idNoInput type="text" id="idNo" name="idNo" [(ngModel)]="idNo" required>
         </div>
 
+        @if (errorMessage) {
+        <div class="error">{{ errorMessage }}</div>
+        }
+
         <div class="row">
-            <button type="submit">Login</button>
+            <button type="submit" [disabled]="isLoading">{{ isLoading ? 'कृपया रुकें...' : 'Login' }}</button>
         </div>
 
     </form>

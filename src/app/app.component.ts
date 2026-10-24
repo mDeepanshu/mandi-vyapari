@@ -32,6 +32,9 @@ export class AppComponent implements OnInit {
     }else{
       this.isLoggedIn = false;
     }
+
+    // Ask the browser not to evict our storage (and the saved login) when the device is low on space
+    navigator.storage?.persist?.().catch(() => {});
   }
 
   toggleLanguage(isHindi: boolean) {
