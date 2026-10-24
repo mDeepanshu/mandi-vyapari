@@ -29,13 +29,13 @@ The same code serves two separate mandi clients, chosen at build time. **Never m
 |---|---|---|
 | Environment | `environment.prod.ts` | `environment.hmb.ts` |
 | Hosting | Vercel, auto-deploy on push to `main` (`mva.make73.com`) | Firebase Hosting site `hmb-vyapari` in project `hmb-vyapari` (owned by deepanshumalviya8964@gmail.com), deployed with `npm run deploy:hmb` |
-| API (`apiUrl`) | Spring server on App Runner (`/mandi` prefix) | `mandi-lambda-core` stage `hmb` (no prefix) |
+| API (`apiUrl`) | Spring server on App Runner (`bate8khjqj…/mandi`) | HMB's own Spring server on App Runner (`fmhpfpetcz…/mandi`), same API |
 | Push (`lambdaUrl`) | `mandi-vyapari-lambda` stage `dev` (Neon) | `mandi-vyapari-lambda` stage `hmb` (HMB Supabase, table `push_subscriptions`) |
 | Branding | `public/` (icons, `logo.png`, manifest) | `branding/hmb/` replaces those files in the build |
 
 - Client-specific values (URLs, `mandiPhone`) belong in the environment files, not in components.
-- HMB's lambda returns different shapes than the Spring server for login (`validatePartyCode` returns a list of snake_case rows) and possibly the party list. The login screen and sidebar accept both shapes, so keep that when touching them.
-- HMB's API CORS (`mandi-lambda-core/serverless.ts`, `originsByStage.hmb`) must list the HMB app's origins and allow the `vyapariCode` header.
+- Don't point HMB at `mandi-lambda-core`'s `hmb` stage: its Supabase data differs from HMB's live data (other trader IDs), and its `validatePartyCode` returns a list of snake_case rows. The login screen and sidebar still accept that shape in case the client migrates to it.
+- A trader's ID differs between HIS and HMB; HMB traders log in with their HMB ID.
 
 ## Architecture
 
