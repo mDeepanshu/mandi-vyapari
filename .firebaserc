@@ -1,9 +1,9 @@
 {
   "projects": {
-    "default": "hmb-application"
+    "default": "hmb-vyapari"
   },
   "targets": {
-    "hmb-application": {
+    "hmb-vyapari": {
       "hosting": {
         "hmb-vyapari": ["hmb-vyapari"]
       }

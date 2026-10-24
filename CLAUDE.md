@@ -14,7 +14,7 @@ npm run build                 # production build (default config) -> dist/mandi-
 npm run watch                 # dev build in watch mode
 npm run serve:ssr:mandi-vyapari   # run the built Express SSR server (PORT env, default 4000)
 npm run build:hmb             # HMB client build -> dist/mandi-vyapari-hmb
-npm run deploy:hmb            # build HMB + firebase deploy (site hmb-vyapari, project hmb-application)
+npm run deploy:hmb            # build HMB + firebase deploy (site hmb-vyapari, project hmb-vyapari)
 ng serve --configuration hmb  # run locally against HMB's backends
 npm test                      # Karma + Jasmine
 ```
@@ -28,7 +28,7 @@ The same code serves two separate mandi clients, chosen at build time. **Never m
 | | HIS (default `production` build) | HMB (`--configuration hmb`) |
 |---|---|---|
 | Environment | `environment.prod.ts` | `environment.hmb.ts` |
-| Hosting | Vercel, auto-deploy on push to `main` (`mva.make73.com`) | Firebase Hosting site `hmb-vyapari` in project `hmb-application`, deployed with `npm run deploy:hmb` |
+| Hosting | Vercel, auto-deploy on push to `main` (`mva.make73.com`) | Firebase Hosting site `hmb-vyapari` in project `hmb-vyapari` (owned by deepanshumalviya8964@gmail.com), deployed with `npm run deploy:hmb` |
 | API (`apiUrl`) | Spring server on App Runner (`/mandi` prefix) | `mandi-lambda-core` stage `hmb` (no prefix) |
 | Push (`lambdaUrl`) | `mandi-vyapari-lambda` stage `dev` (Neon) | `mandi-vyapari-lambda` stage `hmb` (HMB Supabase, table `push_subscriptions`) |
 | Branding | `public/` (icons, `logo.png`, manifest) | `branding/hmb/` replaces those files in the build |

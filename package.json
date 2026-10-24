@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:hmb": "ng build --configuration hmb",
-    "deploy:hmb": "ng build --configuration hmb && firebase deploy --only hosting:hmb-vyapari --project hmb-application",
+    "deploy:hmb": "ng build --configuration hmb && firebase deploy --only hosting:hmb-vyapari --project hmb-vyapari",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:mandi-vyapari": "node dist/mandi-vyapari/server/server.mjs"
