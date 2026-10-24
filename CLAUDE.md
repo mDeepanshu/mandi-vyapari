@@ -25,6 +25,7 @@ There are no spec files: the component schematic in `angular.json` sets `skipTes
 - **Services**:
   - `SharedServiceService` (root-provided): ledger fetch, party list, and push subscription.
   - `LoginServiceService`: *not* root-provided. It is listed in `LoginScreenComponent.providers`, so add it to `providers` anywhere else you inject it.
+- **Hosting**: production is `https://mva.make73.com` (Vercel, auto-deploys on push to `main`; also reachable at `mandi-vyapari.vercel.app`). Any new origin must be added to the lambda's CORS allowlist.
 - **Two backends**, both configured in `src/environments/`:
   - `apiUrl`: main REST API on AWS App Runner (`/party/...`, `/vyapari/ledger`). Responses are wrapped as `{ responseBody: ... }`.
   - `lambdaUrl`: API Gateway/Lambda for push subscriptions (`/subscribe`).
