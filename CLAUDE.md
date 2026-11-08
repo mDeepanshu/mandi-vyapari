@@ -29,12 +29,12 @@ The same code serves two separate mandi clients, chosen at build time. **Never m
 |---|---|---|
 | Environment | `environment.prod.ts` | `environment.hmb.ts` |
 | Hosting | Vercel, auto-deploy on push to `main` (`mva.make73.com`) | Firebase Hosting site `hmb-vyapari` in project `hmb-vyapari` (owned by deepanshumalviya8964@gmail.com), deployed with `npm run deploy:hmb` |
-| API (`apiUrl`) | Spring server on App Runner (`bate8khjqj…/mandi`) | HMB's own Spring server on App Runner (`fmhpfpetcz…/mandi`), same API |
+| API (`apiUrl`) | HIS API on API Gateway in ap-south-1 (`nci05m4mhf…`, served at the root with no `/mandi` prefix); previously the Spring server on App Runner (`bate8khjqj…/mandi`) | HMB's API on API Gateway in ap-south-1 (`fkli4fih7l…`, served at the root with no `/mandi` prefix), same routes; previously HMB's Spring server on App Runner (`fmhpfpetcz…/mandi`) |
 | Push (`lambdaUrl`) | `mandi-vyapari-lambda` stage `dev` (Neon) | `mandi-vyapari-lambda` stage `hmb` (HMB Supabase, table `push_subscriptions`) |
 | Branding | `public/` (icons, `logo.png`, manifest) | `branding/hmb/` replaces those files in the build; generated from the original logo in `branding/source/` (not deployed). The wide logo is sized to fit Android's round splash crop, so it's small in the icon |
 
 - Client-specific values (URLs, `mandiPhone`) belong in the environment files, not in components.
-- Don't point HMB at `mandi-lambda-core`'s `hmb` stage: its Supabase data differs from HMB's live data (other trader IDs), and its `validatePartyCode` returns a list of snake_case rows. The login screen and sidebar still accept that shape in case the client migrates to it.
+- HMB's API (`fkli4fih7l…`) returns `validatePartyCode` as a list of snake_case rows (`party_id`, `party_code`). The login screen and sidebar accept both that shape and the Spring server's camelCase object.
 - A trader's ID differs between HIS and HMB; HMB traders log in with their HMB ID.
 
 ## Architecture

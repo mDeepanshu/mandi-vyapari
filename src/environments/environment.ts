@@ -3,7 +3,8 @@ export const environment = {
   // apiUrl: 'http://localhost:8080/mandi',
   // lambdaUrl: 'http://localhost:3000/dev',
 
-  apiUrl: 'https://bate8khjqj.ap-south-1.awsapprunner.com/mandi',
+  apiUrl: 'https://nci05m4mhf.execute-api.ap-south-1.amazonaws.com',
+  // apiUrl: 'https://bate8khjqj.ap-south-1.awsapprunner.com/mandi', // previous: HIS Spring server on App Runner
   lambdaUrl: 'https://5txvte0v46.execute-api.ap-southeast-1.amazonaws.com/dev',
   mandiPhone: '9826306406',
 };
