@@ -99,6 +99,35 @@ button {
   width: 40% !important;
 }
 
+// ---- HMB ledger only (.table.hmb): ITEM | QTY | AMOUNT, header DATE | QTY | DR | CR
+.hmb .date,
+.hmb .record {
+  display: grid;
+  grid-template-columns: 34% 16% 1fr 1fr;
+  align-items: center;
+}
+
+.hmb .date>*,
+.hmb .record>*,
+.hmb .record>.itemName {
+  width: auto !important;
+  overflow-wrap: anywhere;
+}
+
+.hmb .record>.amount {
+  grid-column: span 2;
+}
+
+// Same colours as mandi-application's ledger
+.amt-dr {
+  color: #d32f2f;
+}
+
+.amt-cr {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
 input[type="checkbox"] {
   width: 16px;
   height: 16px;

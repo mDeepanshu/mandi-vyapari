@@ -8,6 +8,36 @@
   <div class="cls_balance">
     {{closingAmountOfDate}} <span translate="no" class="notranslate">. तक का बकाया</span>: {{ closingAmount }}
   </div>
+  @if (hmbLedger) {
+  <!-- HMB: QTY column and one coloured AMOUNT cell (credit green, debit red), like mandi-application's ledger -->
+  <div class="table hmb">
+    @for (transactions of transactionsArr; track $index) {
+    <div class="date">
+      <div>{{ transactions.date }}</div>
+      <div>QTY: {{ transactions.quantity ? formatQty(transactions.quantity) : '' }}</div>
+      <div>DR: {{ transactions.dr }}</div>
+      <div>CR: {{ transactions.cr }}</div>
+    </div>
+    @for (item of transactions.items; track $index) {
+    <div class="record">
+      <div class="itemName">
+        @if (item.itemName) {
+        <input type="checkbox">
+        }
+        {{ item.itemName  | itemNameTranslate:isHindi }}
+      </div>
+      <div>{{ item.quantity }}</div>
+      <div class="amount">
+        @if (item.cr) {
+        <span class="amt-cr">{{ item.cr }}</span>
+        } @else {
+        <span class="amt-dr">{{ item.dr }}</span>
+        }{{ item.remark }}
+      </div>
+    </div>
+    } }
+  </div>
+  } @else {
   <div class="table">
     @for (transactions of transactionsArr; track $index) {
     <div class="date">
@@ -29,4 +59,5 @@
     </div>
     } }
   </div>
+  }
 </div>
